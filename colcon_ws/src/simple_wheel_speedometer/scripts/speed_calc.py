@@ -5,11 +5,11 @@ from rclpy.node import Node
 from std_msgs.msg import UInt8, Float32
 
 class SpeedCalculater(Node):
-    WHEEL_RADIUS_M = 0.125
-    WHEEL_CIRCUMFERENCE_M = 2*3.14159*WHEEL_RADIUS_M
+    WHEEL_RADIUS_DEFAULT_M = 0.125
 
     def __init__(self):
         super().__init__("speed_calc")
+        self.declare_parameter("wheel_radius_m", self.WHEEL_RADIUS_DEFAULT_M)
         self.sub = self.create_subscription(UInt8, "rpm", self.speed_publisher, 10)
         self.speed_pub = self.create_publisher(Float32, "speed", 10) 
         print("Speed calculator running...")
@@ -22,7 +22,9 @@ class SpeedCalculater(Node):
             - Speed = RPS * Wheel circumference
         """
         rps = float(rpm_msg.data)/60
-        speed = rps*self.WHEEL_CIRCUMFERENCE_M # in m/s
+        wheel_radius_m_param = self.get_parameter("wheel_radius_m").get_parameter_value().double_value
+        wheel_circumference_m = 2*3.14159*wheel_radius_m_param
+        speed = rps*wheel_circumference_m # in m/s
 
         speed_msg = Float32() 
         speed_msg.data = speed
