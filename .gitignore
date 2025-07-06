@@ -4,3 +4,4 @@ colcon_ws/log/
 *.pyc
 __pycache__/
 *.swp
+colcon_ws/.vscode
