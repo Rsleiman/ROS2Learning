@@ -5,3 +5,4 @@ colcon_ws/log/
 __pycache__/
 *.swp
 colcon_ws/.vscode
+*.png
