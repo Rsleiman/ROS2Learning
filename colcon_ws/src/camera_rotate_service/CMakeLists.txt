@@ -5,21 +5,23 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# find dependencies  
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(cv_bridge REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
-    "srv/INPUT HERE.srv"
+    "srv/TurnCamera.srv"
 )
 
 ament_python_install_package(scripts)
 
 install(PROGRAMS
-    scripts/INPUT HERE.py
-    scripts/INPUT HERE.py
+    scripts/camera_service_client.py
+    scripts/camera_service_server.py
     DESTINATION lib/${PROJECT_NAME}
 )
 
