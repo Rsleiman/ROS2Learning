@@ -13,9 +13,14 @@ find_package(rclpy REQUIRED)
 ament_python_install_package(scripts)
 
 install(PROGRAMS
-  scripts/rpm_publisher.py 
-  scripts/speed_calc.py 
-  DESTINATION lib/${PROJECT_NAME}
+    scripts/rpm_publisher.py 
+    scripts/speed_calc.py 
+    DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+    launch
+    DESTINATION share/${PROJECT_NAME}
 )
 
 
