@@ -6,7 +6,7 @@ from std_msgs.msg import UInt8
 
 
 class RpmPublisher(Node):
-    RPM = 10
+    RPM_DEFAULT = 10
 
     def __init__(self):
         super().__init__("rpm_publisher")
@@ -16,7 +16,7 @@ class RpmPublisher(Node):
 
     def publish_rpm_callback(self):
         msg = UInt8()
-        msg.data = self.RPM
+        msg.data = self.RPM_DEFAULT
         self.pub.publish(msg)
 
 def main():
