@@ -1,3 +1,3 @@
-int64 angle
+float32 angle
 ---
-int64 image
+sensor_msgs/Image image

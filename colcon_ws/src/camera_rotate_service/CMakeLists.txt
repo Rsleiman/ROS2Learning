@@ -12,9 +12,12 @@ find_package(rclpy REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
     "srv/TurnCamera.srv"
+    DEPENDENCIES
+    sensor_msgs
 )
 
 ament_python_install_package(scripts)
