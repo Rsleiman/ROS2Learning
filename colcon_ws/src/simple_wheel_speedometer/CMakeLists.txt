@@ -20,6 +20,8 @@ ament_python_install_package(scripts)
 install(PROGRAMS
     scripts/rpm_publisher.py 
     scripts/speed_calc.py 
+    scripts/service_server.py
+    scripts/service_client.py
     DESTINATION lib/${PROJECT_NAME}
 )
 
