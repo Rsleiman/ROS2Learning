@@ -1,0 +1,3 @@
+int64 number # A number to check whether it's odd or even
+---
+string decision # "Odd" or "Even"
