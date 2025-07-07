@@ -3,6 +3,8 @@
 import rclpy
 from rclpy.node import Node
 from camera_rotate_service.srv import TurnCamera
+from cv_bridge import CvBridge
+import cv2
 
 class TurnCameraClient(Node):
     def __init__(self):
@@ -12,13 +14,20 @@ class TurnCameraClient(Node):
         self.req = TurnCamera.Request()
 
     def send_request(self, angle):
-        self.req.angle = int(angle)
+        self.req.angle = float(angle)
         self.client.wait_for_service()
         self.future = self.client.call_async(self.req)
         rclpy.spin_until_future_complete(self, self.future)
 
         self.result = self.future.result()
-        return self.result
+        return self.result.image
+    
+    def display_image(self, image_msg):
+        image = CvBridge().imgmsg_to_cv2(image_msg)
+        cv2.imshow("Turn Camera Image", image)
+        cv2.waitKey(0) # Press Enter to close
+        cv2.destroyAllWindows()
+
 
 def main():
     rclpy.init()
@@ -27,7 +36,7 @@ def main():
     try:
         user_input = input("Enter an angle: ")
         res = client_node.send_request(user_input)
-        print(f"Server returned: {res.decision}")
+        client_node.display_image(res)
     except KeyboardInterrupt:
         client_node.destroy_node()
         
