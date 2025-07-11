@@ -20,11 +20,11 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ament_python_install_package(scripts)
 
-# install(PROGRAMS
-#   scripts/action_server.py
-#   scripts/
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+install(PROGRAMS
+  scripts/action_server.py
+  scripts/action_client.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
