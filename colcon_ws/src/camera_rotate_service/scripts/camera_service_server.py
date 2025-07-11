@@ -6,7 +6,6 @@ from cv_bridge import CvBridge
 import rclpy
 from rclpy.node import Node
 from camera_rotate_service.srv import TurnCamera
-from sensor_msgs.msg import Image
 
 class TurnCameraServer(Node):
     def __init__(self):
