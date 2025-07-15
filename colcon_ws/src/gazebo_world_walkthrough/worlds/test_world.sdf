@@ -1,5 +1,5 @@
 <!-- OPEN WITH GUI CONGIFURATION: ign gazebo <file_name> --gui-config <pkg>/config/gui.config -->
-
+<!-- If failed to find models in include, in bash: export IGN_GAZEBO_RESOURCE_PATH=/home/ralph/Ros2Learningg/colcon_ws/src/gazebo_world_walkthrough/models/ -->
 
 <sdf version="1.7">
 	<world name="test_world">
