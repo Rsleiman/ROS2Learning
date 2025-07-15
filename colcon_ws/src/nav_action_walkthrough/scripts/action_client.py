@@ -2,9 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from rclpy.action import ActionClient
-from rclpy.action.server import ServerGoalHandle
 from nav_action_walkthrough.action import Navigate
-from geometry_msgs.msg import Point
 from rclpy.task import Future
 
 DISTANCE_THRESHOLD = 0.4 # m

@@ -19,7 +19,7 @@ class NavigateActionServer(Node):
 
     def navigate_callback(self, goal_handle:ServerGoalHandle):
         print("Received goal")
-        start_time = self.get_clock().now().to_msg().sec
+        start_time = self.get_clock().now()
         self.robot_goal_point = [goal_handle.request.goal_point.x,
                                  goal_handle.request.goal_point.y,
                                  goal_handle.request.goal_point.z]
@@ -41,12 +41,12 @@ class NavigateActionServer(Node):
 
         goal_handle.succeed()
         result = Navigate.Result()
-        result.elapsed_time = float(self.get_clock().now().to_msg().sec - start_time)
+        result.elapsed_time = float((self.get_clock().now() - start_time).nanoseconds / 1e9)
 
         return result
 
     
-    def update_robot_position(self, point_msg: Navigate.Goal):
+    def update_robot_position(self, point_msg: Point):
         self.robot_current_position = [point_msg.x, point_msg.y, point_msg.z]
         
 
